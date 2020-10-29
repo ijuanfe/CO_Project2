@@ -1,4 +1,4 @@
-%include "Datos1.dzn";
+% include "Datos1.dzn";
 % Complejidad y Optimización: Proyecto 2
 % Problema Plantas de Energía: Modelo genérico
 

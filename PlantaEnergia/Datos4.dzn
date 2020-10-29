@@ -3,6 +3,7 @@
 % Formato de entrada problema Planta de Energía:
 
 % Parámetros:
+
 % Nc:       Número de centrales eléctricas. Entero >= 0.
 % S:        Número de clientes. Entero >= 0.
 % n:        Número de días para satisfacer demanda diaria de clientes. Entero >= 0.
