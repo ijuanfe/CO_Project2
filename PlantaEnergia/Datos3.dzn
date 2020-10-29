@@ -1,0 +1,27 @@
+% Instancia 3: Satisfactible
+
+% Formato de entrada problema Planta de Energía:
+
+% Parámetros:
+% Nc:       Número de centrales eléctricas. Entero >= 0.
+% S:        Número de clientes. Entero >= 0.
+% n:        Número de días para satisfacer demanda diaria de clientes. Entero >= 0.
+% CaP(i):   Capacidad de producción diaria en megawatts (MW) por central eléctrica con i={0, .., Nc}. Flotante >= 0.
+% CoP(i):   Costo de producción de un MW por central eléctrica con i={0, .., Nc}. Flotante >= 0.
+% d(s,i):   Demanda diaria en MW de un cliente s={0, .., S} para un día i={0, .., n}. Flotantes >= 0.
+
+Nc = 3;
+S = 6;
+n = 3;
+CaP = [800.0, 950.0, 600.0];
+CoP = [900.0, 250.0, 100.0];
+d = array2d (1..S, 1..n,
+     [
+      100.0, 400.0, 200.0, % Cliente1 [Día1, Día2, Día3]
+      190.0, 210.0, 100.0, % Cliente2 ..
+      60.0, 130.0, 101.0,  % Cliente3 ..
+      80.0, 210.0, 300.0,  % Cliente4 ..
+      30.0, 10.0, 134.0,   % Cliente5 ..
+      320.0, 20.0, 246.0   % Cliente6 ..
+     ]
+    );
