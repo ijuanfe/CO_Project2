@@ -10,6 +10,9 @@ class Ui(QMainWindow):
         super(Ui, self).__init__()
         uic.loadUi('ui/main.ui', self)
 
+        self.clients = []
+        self.clientIndex = []
+
         self.days = self.findChild(QSpinBox, 'spinBox')
 
         self.NCaP = self.findChild(QLineEdit, "lineEdit")
@@ -28,9 +31,19 @@ class Ui(QMainWindow):
         self.initializeUI()
 
     def initializeUI(self):
-        self.setWindowTitle('GUI')
+        self.setWindowTitle('Planta de energía')
+        text = self.clientRequest.text
+
+        self.addClientBtn.clicked.connect(lambda: self.addClient())
         self.show()
 
+    def addClient(self, clientRequest: str):
+        cleanRequest = []
+        request = clientRequest.split(',')
+        for req in request:
+            cleanRequest.append(req.strip())
+        self.clients.append(cleanRequest)
+        self.clientList.addItem(clientRequest)
 
 def show():
     app = QApplication(sys.argv)
