@@ -32,13 +32,14 @@ class Ui(QMainWindow):
 
     def initializeUI(self):
         self.setWindowTitle('Planta de energía')
-        text = self.clientRequest.text
+
 
         self.addClientBtn.clicked.connect(lambda: self.addClient())
         self.show()
 
-    def addClient(self, clientRequest: str):
+    def addClient(self):
         cleanRequest = []
+        clientRequest = self.clientRequest.text()
         request = clientRequest.split(',')
         for req in request:
             cleanRequest.append(req.strip())
