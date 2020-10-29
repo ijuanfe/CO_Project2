@@ -175,16 +175,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QListView" name="listView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>310</y>
-      <width>181</width>
-      <height>71</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
@@ -208,7 +198,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Seleccione un cliente</string>
+     <string>→  Seleccione un cliente</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
@@ -271,6 +261,16 @@
     </property>
     <property name="text">
      <string>Solve</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>310</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
     </property>
    </widget>
   </widget>

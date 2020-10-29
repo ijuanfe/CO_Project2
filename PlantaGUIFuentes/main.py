@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QSpinBox, QApplication, QLineEdit, QPushButton, QMainWindow
+from PyQt5.QtWidgets import QSpinBox, QApplication, QLineEdit, QListWidget, QMainWindow, QPushButton
 
 
 class Ui(QMainWindow):
@@ -18,6 +18,12 @@ class Ui(QMainWindow):
         self.NCoP = self.findChild(QLineEdit, "lineEdit_6")
         self.HCoP = self.findChild(QLineEdit, "lineEdit_5")
         self.TCoP = self.findChild(QLineEdit, "lineEdit_4")
+
+        self.clientList = self.findChild(QListWidget, "listWidget")
+        self.clientRequest = self.findChild(QLineEdit, "lineEdit_7")
+        self.addClientBtn = self.findChild(QPushButton, 'pushButton')
+
+        self.solveBtn = self.findChild(QPushButton, 'pushButton_2')
 
         self.initializeUI()
 
