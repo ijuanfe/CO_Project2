@@ -73,7 +73,7 @@ F = sum( i in Centrales )(
 
 solve minimize F;
 
-output ["\nFilas: Días, Columnas: Clientes\n\nCentral Eléctrica 1:\n\n"] ++
+output ["\nFilas: \(n) Días, Columnas: \(S) Clientes\n\nCentral Eléctrica 1:\n\n"] ++
        [show_float(8, 2, ES[i, j, k]) ++
            % Salta en el último cliente del mismo día
            if k == S then "\n" else " " endif ++
