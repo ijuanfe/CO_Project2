@@ -1,7 +1,10 @@
 import os
 import sys
 from PyQt5 import uic
-from PyQt5.QtWidgets import QSpinBox, QApplication, QLineEdit, QListWidget, QMainWindow, QPushButton
+from shutil import copyfile
+from config import MINIZINC_EXECUTABLE_PATH
+from PyQt5.QtWidgets import QSpinBox, QApplication, QLineEdit, QListWidget, QMainWindow, QPushButton, \
+    QPlainTextEdit, QTextEdit
 
 
 class Ui(QMainWindow):
@@ -11,7 +14,6 @@ class Ui(QMainWindow):
         uic.loadUi('ui/main.ui', self)
 
         self.clients = []
-        self.clientIndex = []
 
         self.days = self.findChild(QSpinBox, 'spinBox')
 
@@ -27,14 +29,15 @@ class Ui(QMainWindow):
         self.addClientBtn = self.findChild(QPushButton, 'pushButton')
 
         self.solveBtn = self.findChild(QPushButton, 'pushButton_2')
+        self.output = self.findChild(QTextEdit, "textEdit")
 
         self.initializeUI()
 
     def initializeUI(self):
         self.setWindowTitle('Planta de energía')
 
-
         self.addClientBtn.clicked.connect(lambda: self.addClient())
+        self.solveBtn.clicked.connect(lambda: self.runMinizinc())
         self.show()
 
     def addClient(self):
@@ -46,7 +49,44 @@ class Ui(QMainWindow):
         self.clients.append(cleanRequest)
         self.clientList.addItem(clientRequest)
 
+    def runMinizinc(self):
+        f = open("model/data.dzn", "r")
+        f.write(self.witeInput())
+        command = MINIZINC_EXECUTABLE_PATH + " --solver coinbc " + " ../PlantaEnergia/PlantaEnergia.mzn > out.log"
+        os.system(command)
+        f = open("out.log", "r")
+        self.output.setPlainText(f.read())
+
+    def witeInput(self):
+
+        CaP = str(self.NCaP.text()) + ".0, " +  str(self.HCaP.text()) + ".0, " +  str(self.TCaP.text()) + ".0 "
+        CoP = str(self.NCoP.text()) + ".0, " + str(self.HCoP.text()) + ".0, " + str(self.TCoP.text()) + ".0 "
+
+        return """
+            Nc = 3;
+            S = """ + str(self.clients.__len__()) + """;
+            n = """ + str(self.days.text()) + """;
+            CaP = [""" + CaP + """];
+            CoP = [""" + CoP + """];
+            d = array2d (1..S, 1..n,
+                 [
+                  """ + self.buildClientArray() + """
+                 ]
+                );
+            """
+
+    def buildClientArray(self):
+        clients = ""
+        for client in self.clients:
+            fullRequest = ""
+            for request in client:
+                fullRequest += str(request) + ".0, "
+            clients += fullRequest + "\n"
+        return clients
+
 def show():
+
+    print(MINIZINC_EXECUTABLE_PATH)
     app = QApplication(sys.argv)
     window = Ui()
     app.exec_()
