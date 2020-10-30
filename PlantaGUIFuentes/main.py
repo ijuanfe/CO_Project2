@@ -84,6 +84,7 @@ class Ui(QMainWindow):
             clients += fullRequest + "\n"
         return clients
 
+
 def show():
 
     print(MINIZINC_EXECUTABLE_PATH)
