@@ -6,6 +6,12 @@ from config import MINIZINC_EXECUTABLE_PATH
 from PyQt5.QtWidgets import QSpinBox, QApplication, QLineEdit, QListWidget, QMainWindow, QPushButton, \
     QPlainTextEdit, QTextEdit
 
+class Central:
+
+    def __init__(self, CaP, CoP):
+        self.CaP = CaP
+        self.CoP = CoP
+
 
 class Ui(QMainWindow):
 
@@ -13,16 +19,16 @@ class Ui(QMainWindow):
         super(Ui, self).__init__()
         uic.loadUi('ui/main.ui', self)
 
+        self.centrals = []
         self.clients = []
 
         self.days = self.findChild(QSpinBox, 'spinBox')
 
-        self.NCaP = self.findChild(QLineEdit, "lineEdit")
-        self.HCaP = self.findChild(QLineEdit, "lineEdit_2")
-        self.TCaP = self.findChild(QLineEdit, "lineEdit_3")
-        self.NCoP = self.findChild(QLineEdit, "lineEdit_6")
-        self.HCoP = self.findChild(QLineEdit, "lineEdit_5")
-        self.TCoP = self.findChild(QLineEdit, "lineEdit_4")
+        self.centralList = self.findChild(QListWidget, "listWidget_2")
+        self.CentralCaP = self.findChild(QLineEdit, "lineEdit")
+        self.CentralCoP = self.findChild(QLineEdit, "lineEdit_2")
+        self.CentralName = self.findChild(QLineEdit, "lineEdit_3")
+        self.addCentralBtn = self.findChild(QPushButton, 'pushButton_3')
 
         self.clientList = self.findChild(QListWidget, "listWidget")
         self.clientRequest = self.findChild(QLineEdit, "lineEdit_7")
@@ -36,9 +42,20 @@ class Ui(QMainWindow):
     def initializeUI(self):
         self.setWindowTitle('Planta de energía')
 
+        self.addCentralBtn.clicked.connect(lambda: self.addCentral())
         self.addClientBtn.clicked.connect(lambda: self.addClient())
         self.solveBtn.clicked.connect(lambda: self.runMinizinc())
         self.show()
+
+    def addCentral(self):
+        central = Central(
+            CaP=self.CentralCaP.text(),
+            CoP=self.CentralCoP.text(),
+        )
+        self.centrals.append(central)
+        self.centralList.addItem(
+            self.CentralName.text() + " >> " + str(self.CentralCaP.text()) + " - CoP " + str(self.CentralCoP.text())
+        )
 
     def addClient(self):
         cleanRequest = []

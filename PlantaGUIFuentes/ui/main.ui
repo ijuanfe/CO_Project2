@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1190</width>
-    <height>603</height>
+    <height>604</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>11</y>
+      <y>1</y>
       <width>52</width>
       <height>31</height>
      </rect>
@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>20</y>
+      <y>10</y>
       <width>121</width>
       <height>18</height>
      </rect>
@@ -41,7 +41,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
+      <y>40</y>
       <width>511</width>
       <height>231</height>
      </rect>
@@ -49,128 +49,104 @@
     <property name="title">
      <string>Centrales eléctricas</string>
     </property>
-    <widget class="QLineEdit" name="lineEdit_3">
+    <widget class="QLineEdit" name="lineEdit_1">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>160</y>
-       <width>151</width>
+       <x>20</x>
+       <y>180</y>
+       <width>111</width>
        <height>32</height>
       </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Opcional</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_2">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>120</y>
-       <width>151</width>
+       <x>260</x>
+       <y>180</y>
+       <width>111</width>
        <height>32</height>
       </rect>
+     </property>
+     <property name="placeholderText">
+      <string>$</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>80</y>
-       <width>151</width>
+       <x>140</x>
+       <y>180</y>
+       <width>111</width>
        <height>32</height>
       </rect>
      </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>90</y>
-       <width>111</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Nuclear(N):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>130</y>
-       <width>121</width>
-       <height>18</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Hidroeléctrica(H):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <property name="placeholderText">
+      <string>MW / Día</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>170</y>
-       <width>121</width>
+       <y>160</y>
+       <width>71</width>
        <height>18</height>
       </rect>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Termica(T):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nombre&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>50</y>
-       <width>131</width>
-       <height>18</height>
+       <x>140</x>
+       <y>160</y>
+       <width>71</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>Capacidad MW - día</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Capacidad&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>50</y>
-       <width>141</width>
+       <x>260</x>
+       <y>160</y>
+       <width>111</width>
        <height>18</height>
       </rect>
      </property>
      <property name="text">
-      <string>Costo producción MW</string>
+      <string>Costo producción</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_4">
+    <widget class="QPushButton" name="pushButton_3">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>160</y>
-       <width>151</width>
-       <height>32</height>
+       <x>380</x>
+       <y>180</y>
+       <width>111</width>
+       <height>31</height>
       </rect>
      </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_5">
-     <property name="geometry">
-      <rect>
-       <x>320</x>
-       <y>120</y>
-       <width>151</width>
-       <height>32</height>
-      </rect>
+     <property name="text">
+      <string>Agregar central</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit_6">
+    <widget class="QListWidget" name="listWidget_2">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>80</y>
-       <width>151</width>
-       <height>32</height>
+       <x>20</x>
+       <y>30</y>
+       <width>471</width>
+       <height>121</height>
       </rect>
      </property>
     </widget>
@@ -179,7 +155,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>290</y>
+      <y>370</y>
       <width>58</width>
       <height>18</height>
      </rect>
@@ -188,26 +164,13 @@
      <string>Clientes:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>310</y>
-      <width>171</width>
-      <height>18</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>→  Seleccione un cliente</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>450</y>
-      <width>151</width>
-      <height>34</height>
+      <y>330</y>
+      <width>161</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -218,7 +181,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>450</y>
+      <y>330</y>
       <width>341</width>
       <height>32</height>
      </rect>
@@ -228,7 +191,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>400</y>
+      <y>280</y>
       <width>211</width>
       <height>18</height>
      </rect>
@@ -241,7 +204,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>430</y>
+      <y>300</y>
       <width>431</width>
       <height>18</height>
      </rect>
@@ -254,8 +217,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>500</y>
-      <width>501</width>
+      <y>490</y>
+      <width>511</width>
       <height>34</height>
      </rect>
     </property>
@@ -267,8 +230,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>310</y>
-      <width>181</width>
+      <y>390</y>
+      <width>511</width>
       <height>81</height>
      </rect>
     </property>
@@ -277,7 +240,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>50</y>
+      <y>40</y>
       <width>631</width>
       <height>481</height>
      </rect>
