@@ -37,6 +37,8 @@ class Ui(QMainWindow):
         self.solveBtn = self.findChild(QPushButton, 'pushButton_2')
         self.output = self.findChild(QTextEdit, "textEdit")
 
+        self.resetBtn = self.findChild(QPushButton, 'pushButton_4')
+
         self.initializeUI()
 
     def initializeUI(self):
@@ -45,6 +47,7 @@ class Ui(QMainWindow):
         self.addCentralBtn.clicked.connect(lambda: self.addCentral())
         self.addClientBtn.clicked.connect(lambda: self.addClient())
         self.solveBtn.clicked.connect(lambda: self.runMinizinc())
+        self.resetBtn.clicked.connect(lambda: self.reset())
         self.show()
 
     def addCentral(self):
@@ -95,6 +98,15 @@ class Ui(QMainWindow):
             self.showErr('Los requerimientos ( cantidad actual=' + str(request.__len__()) + ' ) del cliente deben ser igual a la cantidad de días.')
 
     def runMinizinc(self):
+
+        if int(self.days.text()) <= 0:
+            self.showErr('La cantidad de días debe ser mayor a 0.')
+            return
+
+        if int(self.days.text()) <= 0:
+            self.showErr('La cantidad de días debe ser mayor a 0.')
+            return
+
         f = open("model/data.dzn", "w")
         f.write(self.witeInput())
         f.close()
@@ -139,6 +151,12 @@ class Ui(QMainWindow):
     def clearErr(self):
         self.output.setHtml('')
 
+    def reset(self):
+        self.days.setValue(0)
+        self.clientList.clear()
+        self.centralList.clear()
+        self.clients = []
+        self.centrals = []
 
 def show():
 
