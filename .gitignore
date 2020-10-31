@@ -1,2 +1,6 @@
 PlantaGUIFuentes/out.log
 PlantaGUIFuentes/model/*.dzn
+PlantaGUIFuentes/bin
+PlantaGUIFuentes/lib
+PlantaGUIFuentes/include
+PlantaGUIFuentes/pyvenv.cfg
