@@ -62,10 +62,14 @@ class Ui(QMainWindow):
 
         self.centrals.append(central)
         self.centralList.addItem(
-            self.CentralName.text() + " >> CaP" +
+            self.CentralName.text() + " >> CaP " +
             self.CentralCaP.text() + " - CoP " +
             self.CentralCoP.text()
         )
+        self.CentralName.setText("")
+        self.CentralCaP.setText("")
+        self.CentralCoP.setText("")
+        self.clearErr()
 
     def addClient(self):
         days = int(self.days.text())
@@ -75,7 +79,6 @@ class Ui(QMainWindow):
         if days <= 0:
             self.showErr('La cantidad de días debe ser mayor a 0.')
             return
-
         if request.__len__() == days:
             for req in request:
                 try:
@@ -83,10 +86,11 @@ class Ui(QMainWindow):
                 except:
                     self.showErr('El requerimiento debe ser numerico (Ej, 100, 200).')
                     return
-
                 cleanRequest.append(req.strip())
             self.clients.append(cleanRequest)
             self.clientList.addItem(clientRequest)
+            self.clientRequest.setText("")
+            self.clearErr()
         else:
             self.showErr('Los requerimientos ( cantidad actual=' + str(request.__len__()) + ' ) del cliente deben ser igual a la cantidad de días.')
 
