@@ -53,6 +53,13 @@ class Ui(QMainWindow):
             CoP=self.CentralCoP.text(),
         )
 
+        try:
+            int(central.CaP)
+            int(central.CoP)
+        except:
+            self.showErr('La capacidad y el costo deben ser números.')
+            return
+
         self.centrals.append(central)
         self.centralList.addItem(
             self.CentralName.text() + " >> CaP" +
@@ -71,11 +78,11 @@ class Ui(QMainWindow):
 
         if request.__len__() == days:
             for req in request:
-
                 try:
                     int(req)
                 except:
-
+                    self.showErr('El requerimiento debe ser numerico (Ej, 100, 200).')
+                    return
 
                 cleanRequest.append(req.strip())
             self.clients.append(cleanRequest)
