@@ -103,8 +103,12 @@ class Ui(QMainWindow):
             self.showErr('La cantidad de días debe ser mayor a 0.')
             return
 
-        if int(self.days.text()) <= 0:
-            self.showErr('La cantidad de días debe ser mayor a 0.')
+        if self.centrals.__len__() <= 0:
+            self.showErr('Debe tener al menos una central.')
+            return
+
+        if self.clients.__len__() <= 0:
+            self.showErr('Debe tener al menos un cliente.')
             return
 
         f = open("model/data.dzn", "w")
