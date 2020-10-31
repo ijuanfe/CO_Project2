@@ -61,13 +61,27 @@ class Ui(QMainWindow):
         )
 
     def addClient(self):
+        days = int(self.days.text())
         cleanRequest = []
         clientRequest = self.clientRequest.text()
         request = clientRequest.split(',')
-        for req in request:
-            cleanRequest.append(req.strip())
-        self.clients.append(cleanRequest)
-        self.clientList.addItem(clientRequest)
+        if days <= 0:
+            self.showErr('La cantidad de días debe ser mayor a 0.')
+            return
+
+        if request.__len__() == days:
+            for req in request:
+
+                try:
+                    int(req)
+                except:
+
+
+                cleanRequest.append(req.strip())
+            self.clients.append(cleanRequest)
+            self.clientList.addItem(clientRequest)
+        else:
+            self.showErr('Los requerimientos ( cantidad actual=' + str(request.__len__()) + ' ) del cliente deben ser igual a la cantidad de días.')
 
     def runMinizinc(self):
         f = open("model/data.dzn", "w")
@@ -107,6 +121,12 @@ class Ui(QMainWindow):
                 fullRequest += str(request) + ".0, "
             clients += fullRequest + "\n"
         return clients
+
+    def showErr(self, msg):
+        self.output.setHtml('<h3 style="color:#ff2e2e;">' + msg + '</h3>')
+
+    def clearErr(self):
+        self.output.setHtml('')
 
 
 def show():
