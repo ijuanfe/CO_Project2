@@ -27,7 +27,7 @@ class Ui(QMainWindow):
         self.centralList = self.findChild(QListWidget, "listWidget_2")
         self.CentralCaP = self.findChild(QLineEdit, "lineEdit")
         self.CentralCoP = self.findChild(QLineEdit, "lineEdit_2")
-        self.CentralName = self.findChild(QLineEdit, "lineEdit_3")
+        self.CentralName = self.findChild(QLineEdit, "lineEdit_1")
         self.addCentralBtn = self.findChild(QPushButton, 'pushButton_3')
 
         self.clientList = self.findChild(QListWidget, "listWidget")
@@ -52,9 +52,12 @@ class Ui(QMainWindow):
             CaP=self.CentralCaP.text(),
             CoP=self.CentralCoP.text(),
         )
+
         self.centrals.append(central)
         self.centralList.addItem(
-            self.CentralName.text() + " >> " + str(self.CentralCaP.text()) + " - CoP " + str(self.CentralCoP.text())
+            self.CentralName.text() + " >> CaP" +
+            self.CentralCaP.text() + " - CoP " +
+            self.CentralCoP.text()
         )
 
     def addClient(self):
@@ -67,35 +70,39 @@ class Ui(QMainWindow):
         self.clientList.addItem(clientRequest)
 
     def runMinizinc(self):
-        f = open("model/data.dzn", "r")
+        f = open("model/data.dzn", "w")
         f.write(self.witeInput())
-        command = MINIZINC_EXECUTABLE_PATH + " --solver coinbc " + " ../PlantaEnergia/PlantaEnergia.mzn > out.log"
+        f.close()
+        command = MINIZINC_EXECUTABLE_PATH + " --solver coinbc " + " model/model.mzn > out.log"
         os.system(command)
         f = open("out.log", "r")
         self.output.setPlainText(f.read())
 
     def witeInput(self):
 
-        CaP = str(self.NCaP.text()) + ".0, " +  str(self.HCaP.text()) + ".0, " +  str(self.TCaP.text()) + ".0 "
-        CoP = str(self.NCoP.text()) + ".0, " + str(self.HCoP.text()) + ".0, " + str(self.TCoP.text()) + ".0 "
+        CaP = ""
+        CoP = ""
 
-        return """
-            Nc = 3;
-            S = """ + str(self.clients.__len__()) + """;
-            n = """ + str(self.days.text()) + """;
-            CaP = [""" + CaP + """];
-            CoP = [""" + CoP + """];
-            d = array2d (1..S, 1..n,
-                 [
-                  """ + self.buildClientArray() + """
-                 ]
-                );
-            """
+        for central in self.centrals:
+            CaP += central.CaP + ".0, "
+            CoP += central.CoP + ".0, "
+
+        data = "Nc = " + str(self.centrals.__len__()) + ";\n"
+        data += "S = " + str(self.clients.__len__()) + ";\n"
+        data += "n = " + str(self.days.text()) + ";\n"
+        data += "CaP = [" + CaP + "];\n"
+        data += "CoP = [" + CoP + "];\n"
+        data += "d = array2d (1..S, 1..n,\n"
+        data += "   [\n"
+        data += self.buildClientArray() + "\n"
+        data += "   ]);\n"
+
+        return data
 
     def buildClientArray(self):
         clients = ""
         for client in self.clients:
-            fullRequest = ""
+            fullRequest = "     "
             for request in client:
                 fullRequest += str(request) + ".0, "
             clients += fullRequest + "\n"
